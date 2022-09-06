@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a0dee5f62e.js" crossorigin="anonymous"></script>
+    <title>DJC</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="titleSection" class="section">
+        <h1 id="title">Dad Jokes Central!</h1>
+        <img src="images/dadLaughing.png" alt="Dad Laughing">
+    </div>
+         
+    <div id="loginArea" class="section">
+        <h1 id="instructions">Login or signup to share your dad jokes! Vote on others jokes, while you're at it!</h1>
+        <div class="buttons" id="buttonElement">
+            <button onclick="window.location.href='/signup';" class="auth" id="Signup">Signup</button>
+            <button onclick="window.location.href='/login';" class="auth" id="Login">Login</button>
+        </div>
+    </div>
+
+    <section id="jokeArea" class="section">
+        <h1 id="recentJokesTitle">Recent jokes submitted by users</h1>
+        
+        <div class="individualJoke section">
+            <ul>
+                <% jokes.forEach( el => { %>
+                        <li class='jokeItem' data-id='<%=el._id%>'>
+                            <h3 class="jokeDetails"><%= el.joke %></h3>
+                            <div id="individualJokeAuthandDate" class="section">
+                                <h4 class="jokeDetails date"><%= el.date %></h4>
+                                <h4 class="jokeDetails score"><%= el.likes %></h4>
+                            </div>
+                            <!-- <span>like</span> -->
+                        </li>
+                <% }) %>    
+            </ul> 
+        </div>
+        
+    </section> 
+
+    <script src="js/main.js"></script>
+</body>
+</html>

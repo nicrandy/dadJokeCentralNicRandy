@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/a0dee5f62e.js" crossorigin="anonymous"></script>
+    <title>Dad Jokes Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="welcome">
+        <h1 id="instructions">Welcome back, <%= user.userName %>  </h1>
+        <button class="del" onclick="window.location.href='/logout';">Logout</button>
+    </div>
+    <ul>
+    <h3 id="instructions">My Dad Jokes:</h3>
+    <% jokes.forEach( el => { %>
+            <li class='jokeItem' data-id='<%=el._id%>'>
+                <span class="jokeDetails"><%= el.joke %></span>
+                <button class="del smallButton" onclick="deleteJoke();">Delete</button>
+            </li>
+    <% }) %>    
+    </ul>
+
+        <form class="profileJokeForm" action="/profile/createJoke" method='POST'>
+            <input id="inputBox" type="text" placeholder="Enter knee-slapper here" name='jokeItem'>
+            <input class="button" type="submit">
+        </form>
+
+    <div class="individualJoke section likedJokes">
+        <ul>
+            <% likedJokes.forEach( el => { %>
+                    <li class='jokeItem likedJoke' data-id='<%=el._id%>'>
+                        <h3 class="jokeDetails"><%= el.joke %></h3>
+                        <div id="individualJokeAuthandDate" class="section">
+                            <h4 class="jokeDetails date"><%= el.date %></h4>
+                            <h4 class="jokeDetails "><%= el.likes %></h4>
+                        </div>
+                        <!-- <span>like</span> -->
+                    </li>
+            <% }) %>    
+        </ul> 
+    </div>
+
+
+
+
+
+
+
+
+    <div class="individualJoke section allJokes">
+        <ul>
+            <% jokesAll.forEach( el => { %>
+                    <li class='jokeItem allJoke' data-id='<%=el._id%>'>
+                        <h3 class="jokeDetails"><%= el.joke %></h3>
+                        <div id="individualJokeAuthandDate" class="section">
+                            <h4 class="jokeDetails date"><%= el.date %></h4>
+                            <h4 class="jokeDetails score"><%= el.likes %></h4>
+                            <i class="fa-solid fa-thumbs-up like"></i>
+                            <!-- <i class="fa-solid fa-thumbs-down dislike"></i> -->
+                        </div>
+                        <!-- <span>like</span> -->
+                    </li>
+            <% }) %>    
+        </ul> 
+    </div>
+
+
+
+
+
+    <!-- <section>
+        <h3>Update Joke</h3>
+        <form action="/profile/updateJoke" method="PUT">
+            <textarea type="text" placeholder="Update your joke..." name="updatedJoke"></textarea>
+            <input type="submit">
+        </form>
+    </section> -->
+
+    <script src="js/main.js"></script>
+</body>
+</html>
